@@ -17,8 +17,8 @@
         <!-- children of navbar-menu must be navbar-start and/or navbar-end -->
         <div class="navbar-menu has-background-black" id="navbar-menu">
             <!-- navbar items | left side -->
-            <!-- <div class="navbar-start">
-            </div> -->
+             <div class="navbar-start">
+            </div>
             <!-- navbar items | right side -->
             <div class="navbar-end">
                 <a class="navbar-item {% if page.layout == 'default' %}is-active{% endif %}"
@@ -27,7 +27,8 @@
                 <a class="navbar-item" href="{{site.url}}{{site.baseurl}}/#contact">CONTACT</a>
                 <a class="navbar-item {% if page.layout == 'blog' %}is-active{% endif %}"
                     href="{{site.url}}{{site.baseurl}}/blog">BLOG</a>
-                {% include dropdown.html %}
+                <a class="navbar-item {% if page.layout == 'project' %}is-active{% endif %}"
+                    href="{{site.url}}{{site.baseurl}}/project">REFERENCES</a>
             </div>
 
         </div>
