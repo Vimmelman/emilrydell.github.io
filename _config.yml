@@ -11,7 +11,7 @@ title: EMIL RYDELL
 # Description of the Site
 description: Power Platform Senior Consultant
 # URL of Image of the Site
-site-image: /WhatATheme/assets/images/meta.jpg
+site-image: /assets/images/site.png
 # Keywords of the Site
 site-keywords: Power platform, Sharepoint, Automation
 # URL for the Image of custom Favicon
@@ -43,9 +43,9 @@ spotify_username: devizion
 # Name of the Author
 author-name: Emil Rydell
 # URL for the Image of the Author
-author-image: https://avatars.githubusercontent.com/u/49727253?v=4
+author-image: /assets/images/profile.png
 # 60 Words About the Author
-author-about: Power Platform expert with a long history of helping businesses with everything from processes, to app development and automations. 
+author-about: Welcome to my digital space! I am a Microsoft Certified Power Platform Consultant , leveraging my 8 years of expertise as a SharePoint Administrator, and 4+ years of Power platform development to push the way businesses operate. My journey involves not just managing technology but harnessing its power to elevate organizational efficiency. Whether it's creating tailored automations, streamlining processes, or developing custom apps, my goal is to provide solutions that drives your business forward. 
 # URL to the Author's Profile (i.e., Github, Twitter, Stackoverflow, etc)
 author-url: https://www.linkedin.com/in/emil-rydell/
 
@@ -82,6 +82,21 @@ defaults:
       type: 'pages'
     values:
       layout: page
+  -
+defaults:
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "page"
+
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name
+  elements:                                             # For Documentation Only
+    output: true                                        # For Documentation Only
+
 
 # Exclude
 exclude:
