@@ -1,7 +1,7 @@
 ---
 title: How to name your PowerApps canvas app objects
 layout: post
-post-image: "/assets/images/SamplePost.png"
+post-image: "/assets/images/Maybe_it_s_over_to_the_left___.jpg"
 description: Get to grips with how to best name your canvas app objects
 tags:
 - Power Platform
