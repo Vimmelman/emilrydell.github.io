@@ -9,7 +9,7 @@ tags:
 - Coding
 ---
 
-#The Issue
+# The Issue
 When using svg images or html controls in an canvas app, it is common to need to be able to change color of different elements. Sadly, these controls don't recognize the data type: color.
 
 # The Solution
