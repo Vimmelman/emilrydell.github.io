@@ -15,18 +15,19 @@ When using svg images or html controls in an canvas app, it is common to need to
 # The Solution
 To be able to get the raw hex value from these, you can convert the variable via the JSON() command.
 
-Formula:
-`
+inFormula:
+```
 GreenColor = ColorValue("#1BCC17");
-`
-
-`
+```
+Text:
+```
 JSON(GreenColor)
-`
+```
 This generate the hexcode as "#1BCC17".
 
 But if you need the Hex value without citations (for use in svg images), append the Substitute() command.
-
-`Substitute(JSON(gblAppColors.Green),"""","")`
+```
+Substitute(JSON(gblAppColors.Green),"""","")
+```
 Which will generate the text: #1BCC17
 
