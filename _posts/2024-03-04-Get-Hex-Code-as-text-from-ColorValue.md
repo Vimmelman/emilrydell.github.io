@@ -6,7 +6,7 @@ description: If you need to get your color variable as text(for svg or html cont
 tags:
 - Power Platform
 - Canvas app
-- Coding
+- PowerFX
 ---
 
 # The Issue

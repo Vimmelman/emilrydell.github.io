@@ -1,16 +1,21 @@
 - name: Document Management Solution
-  image: /assets/images/M365DocumentManagement.png
+  image: /assets/images/M365DocumentManagement2.png
   link: /projects/document-management.html
   description: A custom-built Document Management System based on SharePoint, seamlessly integrated with Power Automate.
-- name: CNC Process Planning Application
+- name: CNC Time Planning Application
   link: /projects/document-management.html
-  image: /assets/images/cnccalculations.png
+  image: /assets/images/cnccalculations2.png
   description: Discover a Canvas App meticulously crafted for CNC time calculations. Integrates with several ERP systems.
 - name: Centralized Process Management
   link: /projects/document-management.html
-  image: /assets/images/centralprocess.png
-  description: A complete Solution to gather all business processes in one application, Integrating with directly with customers ERP.
-- name: AI Automatic Documentation Archiver
+  image: /assets/images/centralprocess2.png
+  description: A complete Solution to gather all business processes in one fluent application.
+- name: AI Documentation Archiver
   link: /projects/document-management.html
-  image: /assets/images/aibuilder.png
-  description: A Solution to gather, process and archive documentation in a production plant. Built with AI Builder.
+  image: /assets/images/aibuilder2.png
+  description: A Solution to gather, process and archive documentation in a production plant. Leveraging AI Builder.
+- name: Custom Connector IA System
+  link: /projects/document-management.html
+  image: /assets/images/IASystems.png
+  description: A Custom connector developed to integrate IA System with the power platform and SharePoint.
+
