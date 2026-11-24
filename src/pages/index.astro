@@ -1,0 +1,236 @@
+---
+import "@fontsource/anonymous-pro/400.css";
+import "@fontsource/anonymous-pro/700.css";
+import githubIcon from "bootstrap-icons/icons/github.svg?raw";
+import linkedinIcon from "bootstrap-icons/icons/linkedin.svg?raw";
+import { me } from "../data/me";
+
+const icons: Record<string, string> = { github: githubIcon, linkedin: linkedinIcon };
+
+const roles = me.roles;
+const linkedin = me.links.find((l) => l.label === "LinkedIn")?.href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0c1512" />
+    <title>{me.fullName}</title>
+    <meta
+      name="description"
+      content={`${me.fullName}: independent Power Platform advisor, woodworker and maker based in ${me.location.text}.`}
+    />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪵</text></svg>" />
+  </head>
+  <body>
+    <div id="app">
+      <nav id="nav">
+        <button class="avatar" id="avatar" type="button" aria-label="Poke Emil for another fun fact" title="Poke me">
+          <img src={me.avatarImage} alt="Pixel art of Emil" width="150" height="150" />
+        </button>
+        <div class="ruler" aria-hidden="true"></div>
+      </nav>
+
+      <main class="view">
+        <p>
+          Hej friend! <span class="emoji">👋</span> My name is{" "}
+          <span class="name">{me.name} <span class="emoji">{me.nameEmoji}</span></span>.
+        </p>
+
+        <p>
+          I am a{" "}
+          {roles.map((r, i) => (
+            <>
+              <strong>{r.text} <span class="emoji">{r.emoji}</span></strong>
+              {i < roles.length - 2 ? ", " : i === roles.length - 2 ? " and " : ""}
+            </>
+          ))}{" "}
+          based in <strong>{me.location.text} <span class="emoji">{me.location.emoji}</span></strong>.
+        </p>
+
+        <p>
+          By day I help organizations get <a href={linkedin} target="_blank" rel="noopener">architecture, licensing
+          and governance</a> right <span class="emoji">🧭</span>. By night I turn perfectly good trees into furniture <span class="emoji">🪑</span>.
+        </p>
+
+        <p class="fact">
+          <span class="label">Fun fact:</span>{" "}
+          <span id="fact" data-facts={JSON.stringify(me.funFacts)}>{me.funFacts[0]}</span>
+          <button id="reroll" class="reroll" type="button">roll again <span class="emoji">🎲</span></button>
+        </p>
+
+        <p class="links">
+          {me.links.map((l) => (
+            <a href={l.href} target="_blank" rel="me noopener"><span class="icon" aria-hidden="true" set:html={icons[l.icon]} /> {l.label}</a>
+          ))}
+        </p>
+      </main>
+    </div>
+
+    <script>
+      const factEl = document.getElementById("fact")!;
+      const facts: string[] = JSON.parse(factEl.dataset.facts ?? "[]");
+      let current = -1;
+      const showFact = () => {
+        let next = Math.floor(Math.random() * facts.length);
+        if (facts.length > 1 && next === current) next = (next + 1) % facts.length;
+        current = next;
+        factEl.classList.remove("fade");
+        void factEl.offsetWidth;
+        factEl.textContent = facts[current];
+        factEl.classList.add("fade");
+      };
+      showFact();
+      document.getElementById("reroll")!.addEventListener("click", showFact);
+      const avatar = document.getElementById("avatar")!;
+      avatar.addEventListener("click", () => {
+        showFact();
+        avatar.classList.remove("wiggle");
+        void avatar.offsetWidth;
+        avatar.classList.add("wiggle");
+      });
+    </script>
+
+    <style is:global>
+      /* Nordic pine: deep pine green, birch and lingonberry. */
+      :root {
+        --bg: #0c1512;
+        --fg: #e3ebe5;
+        --name: #e5484d;
+        --strong: #e9cf8e;
+        --link: #6fd3b0;
+        --ruler: #e9cf8e;
+        --avatar-bg: #6b93c4;
+        --cursor: url("/cursor.svg") 1 1, auto;
+        --cursor-click: url("/cursor-pointer.svg") 16 1, pointer;
+      }
+
+      * { box-sizing: border-box; }
+      html, body { margin: 0; }
+      html { cursor: var(--cursor); }
+      a, button { cursor: var(--cursor-click); }
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: "Anonymous Pro", ui-monospace, monospace;
+        font-size: 1.6rem;
+        line-height: 1.6;
+        min-height: 100vh;
+      }
+      #app {
+        display: flex;
+        justify-content: center;
+        padding: 2.5rem 1.5rem 4rem;
+        animation: fadein 1s ease;
+      }
+
+      /* Sidebar: avatar plus a carpenter's ruler instead of a plain divider line. */
+      #nav {
+        display: flex;
+        gap: 1.25rem;
+        margin-right: 1.75rem;
+      }
+      .ruler {
+        --tick: var(--ruler);
+        width: 14px;
+        min-height: 100%;
+        opacity: 0.75;
+        background:
+          linear-gradient(var(--tick), var(--tick)) left / 2px 100% no-repeat,
+          repeating-linear-gradient(to bottom, var(--tick) 0 2px, transparent 2px 50px) left / 14px 100% no-repeat,
+          repeating-linear-gradient(to bottom, var(--tick) 0 2px, transparent 2px 25px) left / 10px 100% no-repeat,
+          repeating-linear-gradient(to bottom, var(--tick) 0 1px, transparent 1px 5px) left / 6px 100% no-repeat;
+      }
+
+      .view {
+        width: min(60%, 46rem);
+        animation: fadein 2.5s ease;
+      }
+      .view p { margin: 0 0 1.1em; }
+      .view p:first-child { margin-top: 0.2em; }
+
+      .avatar {
+        display: block;
+        flex: none;
+        width: 108px;
+        height: 108px;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        overflow: hidden;
+        background: var(--avatar-bg);
+        box-shadow: 0 0 0 2px #23392f;
+      }
+      .avatar img { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+      .avatar:focus-visible { outline: 3px solid var(--strong); outline-offset: 4px; }
+
+      .name { color: var(--name); }
+      strong { color: var(--strong); }
+      a { color: var(--link); text-underline-offset: 0.2em; }
+      a.emoji { text-decoration: none; }
+      .emoji { font-size: 1.25em; line-height: 1; }
+
+      .fact .label { color: var(--name); }
+      #fact { font-style: italic; }
+      .reroll {
+        font: inherit;
+        font-size: 0.75em;
+        color: var(--link);
+        background: none;
+        border: 1px solid var(--link);
+        border-radius: 4px;
+        padding: 0 0.4em;
+        margin-left: 0.4em;
+        white-space: nowrap;
+      }
+      .reroll .emoji { font-size: 1em; }
+      .links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+      .links a {
+        font-size: 0.8em;
+        color: var(--fg);
+        text-decoration: none;
+        border: 1px solid #2a4038;
+        background: #13201b;
+        padding: 0.35em 1em;
+        border-radius: 999px;
+        transition: border-color 0.15s, transform 0.15s;
+      }
+      .links a { display: inline-flex; align-items: center; gap: 0.5em; }
+      .links .icon { display: inline-flex; }
+      .links .icon svg { width: 1.1em; height: 1.1em; }
+      .links a:hover { border-color: var(--link); transform: translateY(-2px); }
+
+      .fade { animation: fadein 0.5s ease; }
+      .wiggle { animation: wiggle 0.5s ease; }
+      @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+      @keyframes wiggle {
+        25% { transform: rotate(-12deg); }
+        50% { transform: rotate(10deg); }
+        75% { transform: rotate(-5deg); }
+      }
+
+      @media (max-width: 900px) {
+        body { font-size: 1.2rem; }
+        #app { flex-direction: column; padding-top: 1.5rem; }
+        #nav { flex-direction: column; margin: 0 0 1.5rem; gap: 1rem; }
+        .avatar { width: 72px; height: 72px; }
+        .ruler {
+          width: 100%;
+          height: 14px;
+          min-height: 0;
+          background:
+            linear-gradient(var(--tick), var(--tick)) top / 100% 2px no-repeat,
+            repeating-linear-gradient(to right, var(--tick) 0 2px, transparent 2px 50px) top / 100% 14px no-repeat,
+            repeating-linear-gradient(to right, var(--tick) 0 2px, transparent 2px 25px) top / 100% 10px no-repeat,
+            repeating-linear-gradient(to right, var(--tick) 0 1px, transparent 1px 5px) top / 100% 6px no-repeat;
+        }
+        .view { width: 100%; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation: none !important; transition: none !important; }
+      }
+    </style>
+  </body>
+</html>
