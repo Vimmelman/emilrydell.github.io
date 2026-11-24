@@ -30,7 +30,7 @@ export const me = {
   ],
 
   links: [
-    { label: "GitHub", icon: "github", href: "https://github.com/emilrydell" }, // verify
-    { label: "LinkedIn", icon: "linkedin", href: "https://www.linkedin.com/in/emilrydell" }, // verify
+    { label: "GitHub", icon: "github", href: "https://github.com/Vimmelman" },
+    { label: "LinkedIn", icon: "linkedin", href: "https://www.linkedin.com/in/emil-rydell/" },
   ],
 };
